@@ -1,42 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Manrope:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-mercury-blue: #5266eb;
-  --color-bright-violet: #a855f7;
-  --color-ghost-blue: #cdddff;
-  --color-deep-space: #0e0e1b;
-  --color-midnight-slate: #16162a;
-  --color-graphite: #22223b;
-  --color-lead: #444462;
-  --color-starlight: #f3f4f6;
-  --color-silver: #a6a7bf;
-  --color-pure-white: #ffffff;
+  --color-void: #000000;
+  --color-bone: #ffffff;
+  --color-ash: #bdbdbd;
+  --color-smoke: #9a9a9a;
+  --color-plum-voltage: #8052ff;
+  --color-amber-spark: #ffb829;
+  --color-lichen: #15846e;
 
-  --font-arcadiadisplay: 'Manrope', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-arcadia: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* Font mapping to Space Grotesk / Inter */
+  --font-acronym: 'Space Grotesk', 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-acronym-body: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
+  /* Typography Scales */
   --text-caption: 12px;
   --text-body-sm: 14px;
-  --text-body: 16px;
   --text-subheading: 18px;
-  --text-heading-sm: 21px;
-  --text-heading: 32px;
-  --text-heading-lg: 49px;
-  --text-display: 65px;
+  --text-heading-sm: 24px;
+  --text-heading: 36px;
+  --text-heading-lg: 48px;
+  --text-display: 78px;
+  --text-hero: 113px;
 
-  --radius-md: 4px;
-  --radius-lg: 8px;
-  --radius-xl: 12px;
-  --radius-3xl: 32px;
-  --radius-3xl-2: 40px;
+  /* Spacing Scale (6px base) */
+  --spacing-6: 6px;
+  --spacing-12: 12px;
+  --spacing-18: 18px;
+  --spacing-24: 24px;
+  --spacing-30: 30px;
+  --spacing-36: 36px;
+  --spacing-60: 60px;
+  --spacing-96: 96px;
+  --spacing-120: 120px;
+
+  /* Spacing overrides or custom names */
+  --radius-3xl: 24px;
 }
 
-/* Custom base overrides */
+/* Custom base overrides on Void background */
 html, body {
-  background-color: var(--color-deep-space);
-  color: var(--color-starlight);
-  font-family: var(--font-arcadia);
+  background-color: #000000;
+  color: var(--color-bone);
+  font-family: var(--font-acronym-body);
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
@@ -49,91 +56,67 @@ html, body {
   flex-direction: column;
 }
 
-/* Custom Scrollbar for Dark Theme */
+/* Custom Scrollbar for Void Theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: var(--color-deep-space);
+  background: #000000;
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-graphite);
+  background: #242424;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-lead);
+  background: var(--color-smoke);
 }
 
-/* Typography Custom Tracking & Feature Settings */
-.font-display {
-  font-family: var(--font-arcadiadisplay);
-  font-feature-settings: "ss01" on;
+/* Typography styles matching Acronym scale rules */
+.font-display-dala {
+  font-family: var(--font-acronym);
+  font-weight: 200;
+  letter-spacing: -0.04em;
 }
 
-.font-body {
-  font-family: var(--font-arcadia);
-  font-feature-settings: "ss01" on;
-}
-
-/* Glassmorphism Panel */
-.glass-panel {
-  background: rgba(22, 22, 42, 0.7);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(82, 102, 235, 0.2);
-}
-
-/* Glowing Backgrounds */
-.aurora-bg {
-  background: radial-gradient(circle at 50% -20%, rgba(82, 102, 235, 0.22) 0%, rgba(168, 85, 247, 0.12) 40%, rgba(14, 14, 27, 0) 75%);
-}
-
-.aurora-subtle {
-  background: radial-gradient(circle at 10% 20%, rgba(82, 102, 235, 0.05) 0%, transparent 45%),
-              radial-gradient(circle at 90% 80%, rgba(168, 85, 247, 0.05) 0%, transparent 45%);
-}
-
-/* Custom Text and Layout Classes */
-.text-caption-custom {
-  font-size: var(--text-caption);
+.font-body-dala {
+  font-family: var(--font-acronym-body);
+  font-weight: 400;
+  letter-spacing: 0.025em;
   line-height: 1.5;
-  letter-spacing: 0.24px;
 }
 
-.text-body-sm-custom {
-  font-size: var(--text-body-sm);
-  line-height: 1.5;
-  letter-spacing: 0.28px;
+.font-button-dala {
+  font-family: var(--font-acronym);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-.text-body-custom {
-  font-size: var(--text-body);
-  line-height: 1.5;
-  letter-spacing: 0.16px;
+/* Void Card Border */
+.void-card {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 24px;
 }
 
-.text-subheading-custom {
-  font-size: var(--text-subheading);
-  line-height: 1.4;
+.void-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-.text-heading-sm-custom {
-  font-size: var(--text-heading-sm);
-  line-height: 1.35;
+/* Custom tracking details */
+.tracking-hero-custom {
+  letter-spacing: -0.04em;
 }
 
-.text-heading-custom {
-  font-size: var(--text-heading);
-  line-height: 1.2;
+.tracking-body-custom {
+  letter-spacing: 0.025em;
 }
 
-.text-heading-lg-custom {
-  font-size: var(--text-heading-lg);
-  line-height: 1.15;
+.tracking-nav-custom {
+  letter-spacing: 0.021em;
 }
 
-.text-display-custom {
-  font-size: var(--text-display);
-  line-height: 1.1;
-  letter-spacing: 0.65px;
+.tracking-eyebrow-custom {
+  letter-spacing: 0.05em;
 }

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Mail, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 const Github = ({ size = 18, ...props }) => (
@@ -9,9 +9,7 @@ const Github = ({ size = 18, ...props }) => (
     viewBox="0 0 24 24" 
     fill="none" 
     stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
+    strokeWidth="1.5" 
     {...props}
   >
     <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
@@ -26,9 +24,7 @@ const Linkedin = ({ size = 18, ...props }) => (
     viewBox="0 0 24 24" 
     fill="none" 
     stroke="currentColor" 
-    strokeWidth="2" 
-    strokeLinecap="round" 
-    strokeLinejoin="round" 
+    strokeWidth="1.5" 
     {...props}
   >
     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
@@ -40,43 +36,34 @@ const Linkedin = ({ size = 18, ...props }) => (
 export default function Hero() {
   const [email, setEmail] = useState('');
   const [success, setSuccess] = useState(false);
-  const [typedText, setTypedText] = useState('');
-  const roles = ['Full Stack Developer', 'Java Specialist', 'Creative Designer'];
+  const [typedRole, setTypedRole] = useState('');
+  const roles = ['FULL STACK DEVELOPER', 'JAVA SPECIALIST', 'CREATIVE BUILDER'];
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  
+
   useEffect(() => {
     let timer;
     const currentFullText = roles[roleIndex];
     
     if (isDeleting) {
       timer = setTimeout(() => {
-        setTypedText(currentFullText.substring(0, typedText.length - 1));
-      }, 50);
+        setTypedRole(currentFullText.substring(0, typedRole.length - 1));
+      }, 40);
     } else {
       timer = setTimeout(() => {
-        setTypedText(currentFullText.substring(0, typedText.length + 1));
-      }, 100);
+        setTypedRole(currentFullText.substring(0, typedRole.length + 1));
+      }, 70);
     }
 
-    if (!isDeleting && typedText === currentFullText) {
-      timer = setTimeout(() => setIsDeleting(true), 2000);
-    } else if (isDeleting && typedText === '') {
+    if (!isDeleting && typedRole === currentFullText) {
+      timer = setTimeout(() => setIsDeleting(true), 2500); // hold word longer
+    } else if (isDeleting && typedRole === '') {
       setIsDeleting(false);
       setRoleIndex((prev) => (prev + 1) % roles.length);
     }
 
     return () => clearTimeout(timer);
-  }, [typedText, isDeleting, roleIndex]);
-
-  const particles = Array.from({ length: 15 }, (_, i) => ({
-    id: i,
-    width: Math.random() * 4 + 2,
-    x: Math.random() * 100,
-    y: Math.random() * 100,
-    duration: Math.random() * 15 + 15,
-    delay: Math.random() * -15,
-  }));
+  }, [typedRole, isDeleting, roleIndex]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -90,165 +77,124 @@ export default function Hero() {
   };
 
   return (
-    <section 
-      className="relative min-h-screen w-full flex flex-col justify-center items-center text-center px-6 py-20 overflow-hidden"
-      style={{
-        backgroundImage: "linear-gradient(to bottom, rgba(14, 14, 27, 0.45) 0%, rgba(14, 14, 27, 0.98) 100%), url('/hero_background.jpg')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
-      {/* Luminous Glow Overlay */}
-      <div className="absolute inset-0 aurora-bg opacity-50 pointer-events-none" />
-
-      {/* Floating Sparkles */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        {particles.map((p) => (
+    <section className="relative min-h-screen w-full flex items-center bg-transparent px-6 py-24 z-10 overflow-hidden">
+      <div className="max-w-[1200px] mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+        
+        {/* Left Column: Compact text block (max-width ~480px implied inside) */}
+        <div className="md:col-span-7 flex flex-col items-start text-left space-y-6 max-w-[500px]">
+          
+          {/* Eyebrow Kicker */}
           <motion.div
-            key={p.id}
-            className="absolute rounded-full bg-mercury-blue/40"
-            style={{
-              width: p.width,
-              height: p.width,
-              left: `${p.x}%`,
-              top: `${p.y}%`,
-            }}
-            animate={{
-              y: [0, -90, 0],
-              x: [0, 45, 0],
-              opacity: [0.15, 0.7, 0.15],
-            }}
-            transition={{
-              duration: p.duration,
-              repeat: Infinity,
-              ease: 'linear',
-              delay: p.delay,
-            }}
-          />
-        ))}
-      </div>
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
+            <span className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase text-plum-voltage">
+              BUILDING SECURE LOGIC. DESIGNING INTUITIVE VISUALS.
+            </span>
+          </motion.div>
 
-      {/* Main Hero Content */}
-      <div className="max-w-[850px] z-10 flex flex-col items-center">
-        {/* Subtitle tag */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="mb-6"
-        >
-          <span className="font-body text-caption-custom tracking-[0.2em] uppercase text-silver px-4 py-1.5 border border-lead/20 bg-midnight-slate/40 backdrop-blur-sm rounded-[32px] inline-flex items-center space-x-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-bright-violet animate-pulse" />
-            <span>Command Center</span>
-          </span>
-        </motion.div>
+          {/* Display Headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="font-acronym text-[64px] sm:text-[78px] md:text-hero leading-[0.85] tracking-hero-custom text-bone font-[200]"
+          >
+            MOHAMMED
+            <br />
+            FARDEEN
+            <br />
+            KHAN
+          </motion.h1>
 
-        {/* Headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="font-display text-[42px] sm:text-[56px] md:text-display-custom font-[300] tracking-display leading-display text-starlight max-w-4xl"
-        >
-          Mohammed Fardeen Khan
-        </motion.h1>
+          {/* Typing Role Indicator */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="min-h-[22px] flex items-center"
+          >
+            <span className="font-acronym text-[13px] font-semibold tracking-eyebrow-custom text-amber-spark">
+              {typedRole}
+            </span>
+            <span className="w-[1.5px] h-[14px] bg-amber-spark ml-1 animate-pulse shrink-0" />
+          </motion.div>
 
-        {/* Dynamic Typing Title */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="min-h-[40px] mt-4 flex items-center justify-center"
-        >
-          <span className="font-display text-heading-sm-custom md:text-heading-custom font-light tracking-wide bg-gradient-to-r from-mercury-blue to-bright-violet bg-clip-text text-transparent">
-            {typedText}
-          </span>
-          <span className="w-[2px] h-[24px] md:h-[32px] bg-bright-violet ml-1.5 animate-pulse shrink-0" />
-        </motion.div>
+          {/* Body Paragraph */}
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="font-body-dala text-[15px] md:text-body text-ash leading-relaxed tracking-body-custom"
+          >
+            Full Stack Developer specializing in Java, database indexing, and web systems. Constructing enterprise backend architectures and computer vision try-on prototypes.
+          </motion.p>
 
-        {/* Sub-headline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="font-body text-body sm:text-heading-sm-custom font-light text-silver mt-4 max-w-2xl leading-relaxed"
-        >
-          Engineering scalable web services and desktop applications. Passionate about converting high complexity into clean user environments.
-        </motion.p>
-
-        {/* Combined Pill input & CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7 }}
-          className="w-full max-w-lg mt-10"
-        >
-          <form onSubmit={handleSubmit} className="flex items-center w-full bg-midnight-slate/40 backdrop-blur-md border border-lead/40 rounded-[32px] p-[2px] focus-within:border-bright-violet transition-all duration-300">
-            <input
-              type="email"
-              placeholder="Enter your email address"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-              className="w-full bg-transparent px-6 py-4 font-body text-body-sm-custom text-starlight placeholder-silver/50 focus:outline-none rounded-l-[32px] rounded-r-none"
-            />
-            <button
-              type="submit"
-              className="font-body text-body-sm-custom font-medium bg-gradient-to-r from-mercury-blue to-bright-violet hover:brightness-110 text-pure-white rounded-r-[32px] rounded-l-none px-6 py-4 transition-all duration-300 flex items-center justify-center space-x-2 shrink-0 cursor-pointer active:scale-95"
+          {/* 24px Pill Email CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="w-full pt-4"
+          >
+            <form 
+              onSubmit={handleSubmit} 
+              className="flex items-center w-full bg-void border border-bone/15 p-[2px]"
+              style={{ borderRadius: '24px' }}
             >
-              <span>{success ? 'Connecting...' : 'Connect'}</span>
-              {!success && <ArrowRight size={16} />}
-            </button>
-          </form>
-        </motion.div>
+              <input
+                type="email"
+                placeholder="Enter email to connect"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                className="w-full bg-transparent px-5 py-3 font-acronym text-[14px] text-bone placeholder-smoke focus:outline-none"
+              />
+              <button
+                type="submit"
+                className="font-button-dala text-[12px] bg-plum-voltage hover:bg-plum-voltage/90 text-bone px-5 py-3 transition-colors flex items-center justify-center space-x-1.5 shrink-0 cursor-pointer active:scale-95"
+                style={{ borderRadius: '24px' }}
+              >
+                <span>{success ? 'TRANSMITTING' : 'REQUEST ENTRY'}</span>
+                {!success && <ArrowRight size={14} />}
+              </button>
+            </form>
+          </motion.div>
 
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex items-center space-x-8 mt-16 text-silver"
-        >
-          <a 
-            href="https://github.com/Fardeenkhan17" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="hover:text-starlight hover:scale-105 transition-all duration-300 flex items-center space-x-2 font-body text-body-sm-custom"
+          {/* Social Links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="flex items-center space-x-8 pt-8 text-smoke"
           >
-            <Github size={18} />
-            <span>GitHub</span>
-          </a>
-          <div className="w-[1px] h-4 bg-lead/30" />
-          <a 
-            href="https://linkedin.com/in/md-fardeen-khan-5aa21b363" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="hover:text-starlight hover:scale-105 transition-all duration-300 flex items-center space-x-2 font-body text-body-sm-custom"
-          >
-            <Linkedin size={18} />
-            <span>LinkedIn</span>
-          </a>
-          <div className="w-[1px] h-4 bg-lead/30" />
-          <a 
-            href="mailto:fardeenkhann2003@gmail.com"
-            className="hover:text-starlight hover:scale-105 transition-all duration-300 flex items-center space-x-2 font-body text-body-sm-custom"
-          >
-            <Mail size={18} />
-            <span>Email</span>
-          </a>
-        </motion.div>
+            <a 
+              href="https://github.com/Fardeenkhan17" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-bone transition-colors flex items-center space-x-2 font-acronym text-[12px] tracking-eyebrow-custom font-semibold"
+            >
+              <Github size={16} />
+              <span>GITHUB</span>
+            </a>
+            <a 
+              href="https://linkedin.com/in/md-fardeen-khan-5aa21b363" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-bone transition-colors flex items-center space-x-2 font-acronym text-[12px] tracking-eyebrow-custom font-semibold"
+            >
+              <Linkedin size={16} />
+              <span>LINKEDIN</span>
+            </a>
+          </motion.div>
+
+        </div>
+
+        {/* Right Column: Kept empty so the particle emergent constellation can float free */}
+        <div className="hidden md:col-span-5 md:block pointer-events-none" />
+
       </div>
-
-      {/* View Details Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0.7, 0] }}
-        transition={{ repeat: Infinity, duration: 2, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none"
-      >
-        <span className="font-body text-[10px] uppercase tracking-[0.2em] text-silver mb-2">Command Console</span>
-        <div className="w-[1px] h-8 bg-gradient-to-b from-mercury-blue to-transparent" />
-      </motion.div>
     </section>
   );
 }

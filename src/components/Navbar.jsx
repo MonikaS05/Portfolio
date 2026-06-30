@@ -15,28 +15,41 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'Journey', href: '#journey' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'JOURNEY', href: '#journey' },
+    { name: 'SKILLS', href: '#skills' },
+    { name: 'PROJECTS', href: '#projects' },
+    { name: 'CONTACT', href: '#contact' },
   ];
-
 
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         scrolled 
-          ? 'bg-[#171721]/80 backdrop-blur-md border-b border-lead/20 py-4' 
+          ? 'bg-void/90 backdrop-blur-md border-b border-bone/10 py-3.5' 
           : 'bg-transparent py-6'
       }`}
     >
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between">
-        {/* Name Logo */}
-        <a 
-          href="#" 
-          className="font-display text-heading-sm-custom font-[360] tracking-wide text-starlight hover:text-ghost-blue transition-colors duration-300"
-        >
-          Fardeen.
+        
+        {/* Brand identity (Wordmark + Crystal Icon) */}
+        <a href="#" className="flex items-center space-x-2.5 group">
+          {/* Geometric envelope/crystal logo mark */}
+          <svg 
+            width="22" 
+            height="22" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            strokeWidth="1.5" 
+            className="text-plum-voltage transition-transform duration-300 group-hover:rotate-45"
+          >
+            <path d="M12 2L2 7l10 5 10-5-10-5z" />
+            <path d="M2 17l10 5 10-5" />
+            <path d="M2 12l10 5 10-5" />
+          </svg>
+          <span className="font-acronym text-[18px] font-semibold tracking-wide text-bone">
+            FARDEEN
+          </span>
         </a>
 
         {/* Desktop Nav Links */}
@@ -45,33 +58,33 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="font-body text-body-sm-custom text-silver hover:text-starlight transition-colors duration-300 py-2 relative group"
+              className="font-acronym text-[14px] tracking-nav-custom font-normal text-smoke hover:text-bone transition-colors duration-200 py-2 relative"
             >
               {link.name}
-              <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-mercury-blue transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
         </nav>
 
-        {/* Secondary CTA Header Pill Button */}
+        {/* Primary Action Button (Ghost Nav Button) */}
         <div className="hidden md:block">
           <a
             href="/MD Fardeen_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-body text-body-sm-custom bg-[#cdddff]/20 hover:bg-[#cdddff]/30 text-starlight border border-[#cdddff]/10 rounded-[40px] px-5 py-2 transition-all duration-300 inline-block text-center cursor-pointer active:scale-95"
+            className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase bg-plum-voltage hover:bg-plum-voltage/90 text-bone rounded-3xl px-5 py-3 transition-colors duration-200 inline-block text-center cursor-pointer active:scale-95"
+            style={{ borderRadius: '24px' }}
           >
-            Resume
+            RESUME
           </a>
         </div>
 
         {/* Mobile menu button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-starlight focus:outline-none p-1 hover:bg-graphite rounded-full transition-colors"
+          className="md:hidden text-bone focus:outline-none p-1 hover:bg-[#111] rounded-full transition-colors"
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
         </button>
       </div>
 
@@ -79,18 +92,18 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 w-full bg-midnight-slate border-b border-lead/30 py-6 px-6 flex flex-col space-y-4 md:hidden"
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.15 }}
+            className="absolute top-full left-0 w-full bg-void border-b border-bone/10 py-6 px-6 flex flex-col space-y-4 md:hidden"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-body text-subheading-custom text-silver hover:text-starlight transition-colors py-2 border-b border-lead/10"
+                className="font-acronym text-subheading-custom text-smoke hover:text-bone transition-colors py-2 border-b border-bone/5"
               >
                 {link.name}
               </a>
@@ -100,9 +113,10 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="font-body text-body-sm-custom bg-[#cdddff]/20 hover:bg-[#cdddff]/30 text-starlight border border-[#cdddff]/10 rounded-[40px] py-3 text-center transition-all duration-300 w-full cursor-pointer"
+              className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase bg-plum-voltage text-bone rounded-3xl py-3.5 text-center transition-colors duration-200 w-full cursor-pointer"
+              style={{ borderRadius: '24px' }}
             >
-              View Resume
+              VIEW RESUME
             </a>
           </motion.div>
         )}

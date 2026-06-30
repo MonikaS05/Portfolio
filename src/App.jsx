@@ -6,10 +6,14 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import CustomCursor from './components/CustomCursor';
+import ParticleConstellation from './components/ParticleConstellation';
 
 export default function App() {
   return (
-    <div className="bg-deep-space min-h-screen text-starlight antialiased font-body relative selection:bg-mercury-blue selection:text-pure-white">
+    <div className="bg-void min-h-screen text-bone antialiased font-body relative selection:bg-plum-voltage selection:text-bone">
+      {/* HTML5 Canvas Background Constellation */}
+      <ParticleConstellation />
+      
       {/* Premium custom mouse glow pointer */}
       <CustomCursor />
       
@@ -17,7 +21,7 @@ export default function App() {
       <Navbar />
       
       {/* Sections Stack */}
-      <main className="flex flex-col">
+      <main className="flex flex-col relative z-10 bg-transparent">
         {/* Full-bleed twilight console landing */}
         <Hero />
         
