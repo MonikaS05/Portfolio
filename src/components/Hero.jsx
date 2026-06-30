@@ -56,7 +56,7 @@ export default function Hero() {
     }
 
     if (!isDeleting && typedRole === currentFullText) {
-      timer = setTimeout(() => setIsDeleting(true), 2500); // hold word longer
+      timer = setTimeout(() => setIsDeleting(true), 2500);
     } else if (isDeleting && typedRole === '') {
       setIsDeleting(false);
       setRoleIndex((prev) => (prev + 1) % roles.length);
@@ -80,7 +80,7 @@ export default function Hero() {
     <section className="relative min-h-screen w-full flex items-center bg-transparent px-6 py-24 z-10 overflow-hidden">
       <div className="max-w-[1200px] mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
         
-        {/* Left Column: Compact text block (max-width ~480px implied inside) */}
+        {/* Left Column: Compact text block */}
         <div className="md:col-span-7 flex flex-col items-start text-left space-y-6 max-w-[500px]">
           
           {/* Eyebrow Kicker */}
@@ -191,8 +191,26 @@ export default function Hero() {
 
         </div>
 
-        {/* Right Column: Kept empty so the particle emergent constellation can float free */}
-        <div className="hidden md:col-span-5 md:block pointer-events-none" />
+        {/* Right Column: Profile Image Console Frame beside the name */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="md:col-span-5 flex justify-center md:justify-end py-4 z-10"
+        >
+          <div className="relative w-full max-w-[260px] aspect-[3/4] p-1 border border-bone/15 rounded-3xl bg-transparent">
+            <div className="w-full h-full overflow-hidden border border-plum-voltage/30 rounded-[20px] bg-void">
+              <img 
+                src="/profile_photo.jpg" 
+                alt="Mohammed Fardeen Khan"
+                className="w-full h-full object-cover grayscale-[0.08] hover:grayscale-0 hover:scale-102 transition-all duration-700 ease-out"
+              />
+            </div>
+            
+            {/* Outer floating console point */}
+            <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-plum-voltage animate-pulse" />
+          </div>
+        </motion.div>
 
       </div>
     </section>
