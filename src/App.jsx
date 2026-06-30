@@ -10,7 +10,7 @@ import ParticleConstellation from './components/ParticleConstellation';
 
 export default function App() {
   return (
-    <div className="bg-void min-h-screen text-bone antialiased font-body relative selection:bg-plum-voltage selection:text-bone">
+    <div className="bg-sky-wash min-h-screen text-midnight-ink antialiased font-body relative selection:bg-morning-tint selection:text-midnight-ink">
       {/* HTML5 Canvas Background Constellation */}
       <ParticleConstellation />
       

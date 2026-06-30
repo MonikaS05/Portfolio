@@ -50,7 +50,7 @@ export default function CustomCursor() {
     <>
       {/* Glow dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-plum-voltage rounded-full pointer-events-none z-50"
+        className="fixed top-0 left-0 w-2 h-2 bg-signal-blue rounded-full pointer-events-none z-50"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -60,7 +60,7 @@ export default function CustomCursor() {
       />
       {/* Outer ring */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 border border-plum-voltage/40 rounded-full pointer-events-none z-50"
+        className="fixed top-0 left-0 w-8 h-8 border border-signal-blue/40 rounded-full pointer-events-none z-50"
         style={{
           x: cursorXSpring,
           y: cursorYSpring,
@@ -69,11 +69,12 @@ export default function CustomCursor() {
         }}
         animate={{
           scale: isHovered ? 1.5 : 1,
-          backgroundColor: isHovered ? 'rgba(128, 82, 255, 0.1)' : 'rgba(128, 82, 255, 0)',
-          borderColor: isHovered ? 'rgba(128, 82, 255, 0.8)' : 'rgba(128, 82, 255, 0.4)',
+          backgroundColor: isHovered ? 'rgba(0, 153, 255, 0.1)' : 'rgba(0, 153, 255, 0)',
+          borderColor: isHovered ? 'rgba(0, 153, 255, 0.8)' : 'rgba(0, 153, 255, 0.4)',
         }}
         transition={{ type: 'tween', ease: 'easeOut', duration: 0.2 }}
       />
+
 
     </>
   );

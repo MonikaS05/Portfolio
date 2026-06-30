@@ -15,76 +15,63 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'JOURNEY', href: '#journey' },
-    { name: 'SKILLS', href: '#skills' },
-    { name: 'PROJECTS', href: '#projects' },
-    { name: 'CONTACT', href: '#contact' },
+    { name: 'Journey', href: '#journey' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' },
   ];
 
   return (
     <header 
       className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${
         scrolled 
-          ? 'bg-void/90 backdrop-blur-md border-b border-bone/10 py-3.5' 
-          : 'bg-transparent py-6'
+          ? 'bg-sky-wash/95 backdrop-blur-md border-b border-stone/10 py-3' 
+          : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-[1200px] mx-auto px-6 flex items-center justify-between">
         
-        {/* Brand identity (Wordmark + Crystal Icon) */}
+        {/* Brand identity (Diamond Logo + Wordmark) */}
         <a href="#" className="flex items-center space-x-2.5 group">
-          {/* Geometric envelope/crystal logo mark */}
-          <svg 
-            width="22" 
-            height="22" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            strokeWidth="1.5" 
-            className="text-plum-voltage transition-transform duration-300 group-hover:rotate-45"
-          >
-            <path d="M12 2L2 7l10 5 10-5-10-5z" />
-            <path d="M2 17l10 5 10-5" />
-            <path d="M2 12l10 5 10-5" />
-          </svg>
-          <span className="font-acronym text-[18px] font-semibold tracking-wide text-bone">
+          {/* Diamond logo mark with slightly soft angles */}
+          <div className="w-5 h-5 bg-midnight-ink rotate-45 rounded-sm transition-transform duration-300 group-hover:-rotate-45" />
+          <span className="font-display-genie text-[16px] font-[500] tracking-[-0.02em] text-midnight-ink">
             FARDEEN
           </span>
         </a>
 
-        {/* Desktop Nav Links */}
+        {/* Center: Desktop Nav Links (Geist 14px, Stone -> Signal Blue) */}
         <nav className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="font-acronym text-[14px] tracking-nav-custom font-normal text-smoke hover:text-bone transition-colors duration-200 py-2 relative"
+              className="font-body-genie text-[14px] text-stone hover:text-signal-blue transition-colors duration-200 py-1"
             >
               {link.name}
             </a>
           ))}
         </nav>
 
-        {/* Primary Action Button (Ghost Nav Button) */}
+        {/* Right: Ghost Navigation Button (Pressed Charcoal, 9999px radius) */}
         <div className="hidden md:block">
           <a
             href="/MD Fardeen_Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase bg-plum-voltage hover:bg-plum-voltage/90 text-bone rounded-3xl px-5 py-3 transition-colors duration-200 inline-block text-center cursor-pointer active:scale-95"
-            style={{ borderRadius: '24px' }}
+            className="font-button-genie text-[13px] bg-pressed-charcoal hover:bg-pressed-charcoal/90 text-pure-white rounded-full px-5 py-2 transition-colors duration-200 inline-block text-center cursor-pointer active:scale-95 shadow-sm"
           >
-            RESUME
+            Resume
           </a>
         </div>
 
         {/* Mobile menu button */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden text-bone focus:outline-none p-1 hover:bg-[#111] rounded-full transition-colors"
+          className="md:hidden text-midnight-ink focus:outline-none p-1.5 hover:bg-sky-wash/50 rounded-full transition-colors"
           aria-label="Toggle menu"
         >
-          {mobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+          {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
         </button>
       </div>
 
@@ -92,18 +79,18 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -15 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.15 }}
-            className="absolute top-full left-0 w-full bg-void border-b border-bone/10 py-6 px-6 flex flex-col space-y-4 md:hidden"
+            className="absolute top-full left-0 w-full bg-paper-white border-b border-stone/10 py-6 px-6 flex flex-col space-y-4 md:hidden shadow-lg"
           >
             {navLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="font-acronym text-subheading-custom text-smoke hover:text-bone transition-colors py-2 border-b border-bone/5"
+                className="font-body-genie text-[15px] text-stone hover:text-signal-blue transition-colors py-2 border-b border-stone/5"
               >
                 {link.name}
               </a>
@@ -113,10 +100,9 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setMobileMenuOpen(false)}
-              className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase bg-plum-voltage text-bone rounded-3xl py-3.5 text-center transition-colors duration-200 w-full cursor-pointer"
-              style={{ borderRadius: '24px' }}
+              className="font-button-genie text-[13px] bg-pressed-charcoal text-pure-white rounded-full py-3 text-center transition-colors duration-200 w-full cursor-pointer"
             >
-              VIEW RESUME
+              View Resume
             </a>
           </motion.div>
         )}

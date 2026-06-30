@@ -37,7 +37,7 @@ export default function Hero() {
   const [email, setEmail] = useState('');
   const [success, setSuccess] = useState(false);
   const [typedRole, setTypedRole] = useState('');
-  const roles = ['FULL STACK DEVELOPER', 'JAVA SPECIALIST', 'CREATIVE BUILDER'];
+  const roles = ['Full Stack Developer', 'Java Specialist', 'Creative Builder'];
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
@@ -80,26 +80,26 @@ export default function Hero() {
     <section className="relative min-h-screen w-full flex items-center bg-transparent px-6 py-24 z-10 overflow-hidden">
       <div className="max-w-[1200px] mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
         
-        {/* Left Column: Compact text block */}
+        {/* Left Column: Typography Block */}
         <div className="md:col-span-7 flex flex-col items-start text-left space-y-6 max-w-[500px]">
           
           {/* Eyebrow Kicker */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <span className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase text-plum-voltage">
-              BUILDING SECURE LOGIC. DESIGNING INTUITIVE VISUALS.
+            <span className="font-button-genie text-[11px] tracking-[0.05em] uppercase text-signal-blue bg-morning-tint px-3 py-1 rounded-full">
+              Full Stack Logic × Creative Visuals
             </span>
           </motion.div>
 
-          {/* Display Headline */}
+          {/* Display Headline (Aeonik 500 Substitute) */}
           <motion.h1
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="font-acronym text-[64px] sm:text-[78px] md:text-hero leading-[0.85] tracking-hero-custom text-bone font-[200]"
+            className="font-display-genie text-[54px] sm:text-[68px] md:text-[80px] leading-[1.05] tracking-[-0.02em] text-midnight-ink font-[500]"
           >
             MOHAMMED
             <br />
@@ -115,23 +115,23 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="min-h-[22px] flex items-center"
           >
-            <span className="font-acronym text-[13px] font-semibold tracking-eyebrow-custom text-amber-spark">
+            <span className="font-display-genie text-[15px] font-[500] text-tangerine">
               {typedRole}
             </span>
-            <span className="w-[1.5px] h-[14px] bg-amber-spark ml-1 animate-pulse shrink-0" />
+            <span className="w-[1.5px] h-[15px] bg-tangerine ml-1.5 animate-pulse shrink-0" />
           </motion.div>
 
-          {/* Body Paragraph */}
+          {/* Body Paragraph (Geist 500 Substitute) */}
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="font-body-dala text-[15px] md:text-body text-ash leading-relaxed tracking-body-custom"
+            className="font-body-genie text-[15px] text-stone leading-relaxed"
           >
             Full Stack Developer specializing in Java, database indexing, and web systems. Constructing enterprise backend architectures and computer vision try-on prototypes.
           </motion.p>
 
-          {/* 24px Pill Email CTA */}
+          {/* 32px Pill Email CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -140,8 +140,8 @@ export default function Hero() {
           >
             <form 
               onSubmit={handleSubmit} 
-              className="flex items-center w-full bg-void border border-bone/15 p-[2px]"
-              style={{ borderRadius: '24px' }}
+              className="flex items-center w-full bg-pure-white border border-stone/20 p-[2px] shadow-sm hover:border-stone/40 focus-within:border-signal-blue transition-all"
+              style={{ borderRadius: '32px' }}
             >
               <input
                 type="email"
@@ -149,14 +149,14 @@ export default function Hero() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full bg-transparent px-5 py-3 font-acronym text-[14px] text-bone placeholder-smoke focus:outline-none"
+                className="w-full bg-transparent px-5 py-3 font-body-genie text-[14px] text-midnight-ink placeholder-fog focus:outline-none"
               />
               <button
                 type="submit"
-                className="font-button-dala text-[12px] bg-plum-voltage hover:bg-plum-voltage/90 text-bone px-5 py-3 transition-colors flex items-center justify-center space-x-1.5 shrink-0 cursor-pointer active:scale-95"
-                style={{ borderRadius: '24px' }}
+                className="font-button-genie text-[13px] bg-pressed-charcoal hover:bg-pressed-charcoal/90 text-pure-white px-6 py-3.5 transition-colors flex items-center justify-center space-x-1.5 shrink-0 cursor-pointer active:scale-95"
+                style={{ borderRadius: '32px' }}
               >
-                <span>{success ? 'TRANSMITTING' : 'REQUEST ENTRY'}</span>
+                <span>{success ? 'TRANSMITTING' : 'Request Access'}</span>
                 {!success && <ArrowRight size={14} />}
               </button>
             </form>
@@ -167,13 +167,13 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex items-center space-x-8 pt-8 text-smoke"
+            className="flex items-center space-x-8 pt-8 text-stone"
           >
             <a 
               href="https://github.com/Fardeenkhan17" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:text-bone transition-colors flex items-center space-x-2 font-acronym text-[12px] tracking-eyebrow-custom font-semibold"
+              className="hover:text-signal-blue transition-colors flex items-center space-x-2 font-button-genie text-[12px] tracking-wide"
             >
               <Github size={16} />
               <span>GITHUB</span>
@@ -182,7 +182,7 @@ export default function Hero() {
               href="https://linkedin.com/in/md-fardeen-khan-5aa21b363" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:text-bone transition-colors flex items-center space-x-2 font-acronym text-[12px] tracking-eyebrow-custom font-semibold"
+              className="hover:text-signal-blue transition-colors flex items-center space-x-2 font-button-genie text-[12px] tracking-wide"
             >
               <Linkedin size={16} />
               <span>LINKEDIN</span>
@@ -191,24 +191,36 @@ export default function Hero() {
 
         </div>
 
-        {/* Right Column: Profile Image Console Frame beside the name */}
+        {/* Right Column: Profile Image 32px Rounded Frame beside the name */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
           className="md:col-span-5 flex justify-center md:justify-end py-4 z-10"
         >
-          <div className="relative w-full max-w-[260px] aspect-[3/4] p-1 border border-bone/15 rounded-3xl bg-transparent">
-            <div className="w-full h-full overflow-hidden border border-plum-voltage/30 rounded-[20px] bg-void">
+          {/* 32px radius, 1px Stone border, and soft blue shadow */}
+          <div 
+            className="relative w-full max-w-[270px] aspect-[3/4] p-1.5 border border-stone bg-paper-white"
+            style={{ 
+              borderRadius: '32px',
+              boxShadow: 'rgba(4, 69, 144, 0.08) 0px 14px 20px 4px'
+            }}
+          >
+            <div 
+              className="w-full h-full overflow-hidden border border-stone/10 bg-cloud-veil"
+              style={{ borderRadius: '24px' }}
+            >
               <img 
                 src="/profile_photo.jpg" 
                 alt="Mohammed Fardeen Khan"
-                className="w-full h-full object-cover grayscale-[0.08] hover:grayscale-0 hover:scale-102 transition-all duration-700 ease-out"
+                className="w-full h-full object-cover grayscale-[0.05] hover:grayscale-0 hover:scale-102 transition-all duration-700 ease-out"
               />
             </div>
             
-            {/* Outer floating console point */}
-            <div className="absolute top-4 right-4 w-2 h-2 rounded-full bg-plum-voltage animate-pulse" />
+            {/* Playful Orange Doodle Sticker on the image frame */}
+            <div className="absolute -bottom-3 -left-3 w-8 h-8 rounded-full bg-tangerine flex items-center justify-center text-pure-white font-bold text-sm shadow-md animate-bounce">
+              ⚡
+            </div>
           </div>
         </motion.div>
 

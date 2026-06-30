@@ -10,136 +10,172 @@ export default function ParticleConstellation() {
     if (!ctx) return;
 
     let animationFrameId;
-    let particles = [];
-    const colors = ['#8052ff', '#ffb829', '#15846e', '#ffffff']; // Plum Voltage, Amber Spark, Lichen, Bone
+    let doodles = [];
+    const colors = [
+      'rgba(79, 190, 255, 0.35)',  // Cornflower
+      'rgba(242, 97, 16, 0.25)',   // Tangerine
+      'rgba(149, 82, 224, 0.25)',  // Amethyst
+      'rgba(187, 153, 21, 0.25)',   // Mustard
+    ];
     
-    // Mouse coords
-    const mouse = {
-      x: null,
-      y: null,
-      radius: 120
-    };
+    const mouse = { x: null, y: null, radius: 100 };
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      initParticles();
+      initDoodles();
     };
 
-    // Particle constructor
-    class Particle {
+    class Doodle {
       constructor(x, y) {
         this.x = x;
         this.y = y;
-        // Keep primitives tiny (1px to 4px)
-        this.size = Math.random() * 3 + 1;
+        this.baseX = x;
+        this.baseY = y;
+        
+        // Random size and speeds
+        this.size = Math.random() * 20 + 15; // 15px to 35px
+        this.vx = (Math.random() - 0.5) * 0.25;
+        this.vy = (Math.random() - 0.5) * 0.25;
+        this.angle = Math.random() * Math.PI * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.005;
+        
+        // Pick doodle type: 0=blob, 1=star, 2=cloud, 3=plane, 4=cross
+        this.type = Math.floor(Math.random() * 5);
         this.color = colors[Math.floor(Math.random() * colors.length)];
-        
-        // Random drift speeds
-        this.vx = (Math.random() - 0.5) * 0.4;
-        this.vy = (Math.random() - 0.5) * 0.4;
-        
-        // Primitive type: 0 = circle, 1 = triangle, 2 = diamond
-        this.type = Math.floor(Math.random() * 3);
-        
-        this.baseX = this.x;
-        this.baseY = this.y;
-        this.density = (Math.random() * 30) + 15;
+        this.strokeColor = 'rgba(83, 88, 98, 0.15)'; // Muted Stone line stroke
       }
 
       draw() {
-        ctx.beginPath();
-        ctx.fillStyle = this.color;
-        
+        ctx.save();
+        ctx.translate(this.x, this.y);
+        ctx.rotate(this.angle);
+        ctx.lineWidth = 1.5;
+
         if (this.type === 0) {
-          // Circle
-          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        } else if (this.type === 1) {
-          // Triangle
-          const h = this.size * (Math.sqrt(3)/2);
-          ctx.moveTo(this.x, this.y - h/2);
-          ctx.lineTo(this.x - this.size/2, this.y + h/2);
-          ctx.lineTo(this.x + this.size/2, this.y + h/2);
+          // Soft Blob
+          ctx.beginPath();
+          ctx.fillStyle = this.color;
+          ctx.arc(0, 0, this.size / 2, 0, Math.PI * 2);
+          ctx.fill();
+        } 
+        else if (this.type === 1) {
+          // Twinkling Star (4-point)
+          ctx.beginPath();
+          ctx.strokeStyle = '#535862'; // Stone stroke
+          ctx.globalAlpha = 0.3;
+          const rInner = this.size / 4;
+          const rOuter = this.size / 2;
+          for (let i = 0; i < 4; i++) {
+            ctx.lineTo(Math.cos(this.angle + (i * Math.PI) / 2) * rOuter, Math.sin(this.angle + (i * Math.PI) / 2) * rOuter);
+            ctx.lineTo(Math.cos(this.angle + (i * Math.PI) / 2 + Math.PI / 4) * rInner, Math.sin(this.angle + (i * Math.PI) / 2 + Math.PI / 4) * rInner);
+          }
           ctx.closePath();
-        } else {
-          // Diamond
-          ctx.moveTo(this.x, this.y - this.size);
-          ctx.lineTo(this.x + this.size, this.y);
-          ctx.lineTo(this.x, this.y + this.size);
-          ctx.lineTo(this.x - this.size, this.y);
+          ctx.stroke();
+        } 
+        else if (this.type === 2) {
+          // Puffy Cloud
+          ctx.beginPath();
+          ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+          ctx.strokeStyle = this.strokeColor;
+          ctx.globalAlpha = 0.5;
+          const r = this.size / 3;
+          ctx.arc(-r, 0, r, Math.PI * 0.5, Math.PI * 1.5);
+          ctx.arc(0, -r * 0.8, r * 1.2, Math.PI * 1.0, Math.PI * 2.0);
+          ctx.arc(r, 0, r, Math.PI * 1.5, Math.PI * 0.5);
           ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+        } 
+        else if (this.type === 3) {
+          // Paper Plane
+          ctx.beginPath();
+          ctx.strokeStyle = '#535862';
+          ctx.globalAlpha = 0.25;
+          const w = this.size / 2;
+          ctx.moveTo(-w, -w/2);
+          ctx.lineTo(w, 0);
+          ctx.lineTo(-w/3, w/2);
+          ctx.lineTo(-w, -w/2);
+          ctx.moveTo(-w/3, w/2);
+          ctx.lineTo(-w/2, w/3);
+          ctx.lineTo(w, 0);
+          ctx.stroke();
+        } 
+        else {
+          // Cute Little Cross
+          ctx.beginPath();
+          ctx.strokeStyle = '#535862';
+          ctx.globalAlpha = 0.3;
+          const l = this.size / 3;
+          ctx.moveTo(-l, 0);
+          ctx.lineTo(l, 0);
+          ctx.moveTo(0, -l);
+          ctx.lineTo(0, l);
+          ctx.stroke();
         }
-        
-        ctx.fill();
+
+        ctx.restore();
       }
 
       update() {
-        // Simple mouse interaction (magnetic cluster / push)
+        // Slow rotation drift
+        this.angle += this.rotationSpeed;
+
+        // Interaction: drift away from mouse cursor
         if (mouse.x !== null && mouse.y !== null) {
-          let dx = mouse.x - this.x;
-          let dy = mouse.y - this.y;
-          let distance = Math.sqrt(dx * dx + dy * dy);
+          const dx = mouse.x - this.x;
+          const dy = mouse.y - this.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
           
-          if (distance < mouse.radius) {
-            // Attract to mouse with custom intensity
-            const force = (mouse.radius - distance) / mouse.radius;
-            const directionX = dx / distance;
-            const directionY = dy / distance;
+          if (dist < mouse.radius) {
+            const force = (mouse.radius - dist) / mouse.radius;
+            const dirX = dx / dist;
+            const dirY = dy / dist;
             
-            // Cluster slightly around the cursor
-            this.x += directionX * force * 1.5;
-            this.y += directionY * force * 1.5;
+            // Push away from pointer
+            this.x -= dirX * force * 2.5;
+            this.y -= dirY * force * 2.5;
           }
         }
 
-        // Return to base coordinates slowly (drift offset)
-        let dxBase = this.baseX - this.x;
-        let dyBase = this.baseY - this.y;
-        this.x += dxBase * 0.05 + this.vx;
-        this.y += dyBase * 0.05 + this.vy;
+        // Return to base coordinates slowly (drift)
+        const dxBase = this.baseX - this.x;
+        const dyBase = this.baseY - this.y;
+        this.x += dxBase * 0.02 + this.vx;
+        this.y += dyBase * 0.02 + this.vy;
 
-        // Keep inside window bounds
-        if (this.x < 0 || this.x > canvas.width) this.vx = -this.vx;
-        if (this.y < 0 || this.y > canvas.height) this.vy = -this.vy;
+        // Keep inside screen bounds
+        if (this.x < -50 || this.x > canvas.width + 50) this.vx = -this.vx;
+        if (this.y < -50 || this.y > canvas.height + 50) this.vy = -this.vy;
       }
     }
 
-    const initParticles = () => {
-      particles = [];
-      // Adjust density based on screen size
-      const numberOfParticles = Math.floor((canvas.width * canvas.height) / 3500);
-      const cappedParticles = Math.min(numberOfParticles, 600); // capped for performance
+    const initDoodles = () => {
+      doodles = [];
+      const density = Math.floor((canvas.width * canvas.height) / 25000);
+      const cap = Math.min(density, 45); // Spaced-out confettis
       
-      for (let i = 0; i < cappedParticles; i++) {
+      for (let i = 0; i < cap; i++) {
         const x = Math.random() * canvas.width;
         const y = Math.random() * canvas.height;
-        particles.push(new Particle(x, y));
+        doodles.push(new Doodle(x, y));
       }
     };
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // Render constellation connectors (very faint hairlines if particles are close)
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
-        
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          
-          // Connect nearby nodes with low alpha hairline connections
-          if (dist < 60) {
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(189, 189, 189, ${0.12 * (1 - dist/60)})`;
-            ctx.lineWidth = 0.5;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
+      // Draw a subtle warm-to-cool pastel lighting gradient on top of background wash
+      const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      grad.addColorStop(0, '#ebf5ff'); // Sky Wash
+      grad.addColorStop(1, '#f3f8ff'); // Whisper cooler blue
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      for (let i = 0; i < doodles.length; i++) {
+        doodles[i].update();
+        doodles[i].draw();
       }
       
       animationFrameId = requestAnimationFrame(animate);
@@ -173,7 +209,7 @@ export default function ParticleConstellation() {
   return (
     <canvas 
       ref={canvasRef} 
-      className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[#000000]"
+      className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[#ebf5ff]"
     />
   );
 }

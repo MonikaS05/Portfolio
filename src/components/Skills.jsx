@@ -5,7 +5,7 @@ export default function Skills() {
   const skillCategories = [
     {
       title: 'Backend & Languages',
-      icon: <Code size={16} className="text-plum-voltage" />,
+      icon: <Code size={16} className="text-cornflower" />,
       items: [
         { name: 'Java (OOPs)', logo: 'java' },
         { name: 'JavaScript', logo: 'javascript' },
@@ -15,7 +15,7 @@ export default function Skills() {
     },
     {
       title: 'Frontend & UI Design',
-      icon: <Sparkles size={16} className="text-lichen" />,
+      icon: <Sparkles size={16} className="text-tangerine" />,
       items: [
         { name: 'React.js', logo: 'react' },
         { name: 'Tailwind CSS', logo: 'tailwindcss' },
@@ -25,7 +25,7 @@ export default function Skills() {
     },
     {
       title: 'Cloud & Engineering Tools',
-      icon: <Wrench size={16} className="text-plum-voltage" />,
+      icon: <Wrench size={16} className="text-amethyst" />,
       items: [
         { name: 'GitHub & Git', logo: 'github' },
         { name: 'AWS Cloud', logo: 'aws' },
@@ -40,25 +40,25 @@ export default function Skills() {
       title: 'Project Expo Runner-up',
       subtitle: 'FitMe AI Exhibition',
       desc: 'Secured Runner-up positions in two separate project expositions for computer vision work in FitMe.',
-      icon: <Award size={16} className="text-plum-voltage" />
+      icon: <Award size={16} className="text-cornflower" />
     },
     {
       title: 'Hackathon Contender',
       subtitle: '5+ Academic Showdowns',
       desc: 'Formed teams and engineered prototype web apps under strict hackathon schedules.',
-      icon: <Sparkles size={16} className="text-lichen" />
+      icon: <Sparkles size={16} className="text-tangerine" />
     },
     {
       title: 'Star Performer of the Year',
       subtitle: '2023 Technical Honors',
       desc: 'Recognized for excellent technical documentation, team communication, and leadership.',
-      icon: <Award size={16} className="text-plum-voltage" />
+      icon: <Award size={16} className="text-amethyst" />
     },
     {
       title: 'Fashion & Presentation Wins',
       subtitle: '2× Winner / 1× Runner-up',
       desc: 'Won modeling competitions, displaying strong stage confidence and public presentation.',
-      icon: <Award size={16} className="text-lichen" />
+      icon: <Award size={16} className="text-mustard" />
     }
   ];
 
@@ -66,34 +66,34 @@ export default function Skills() {
     switch (logo) {
       case 'java':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-amber-spark transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-tangerine group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M6 22h12M10 18h4M8 14h8M9 2v4a3 3 0 0 0 6 0V2" />
           </svg>
         );
       case 'javascript':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-amber-spark transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-mustard group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M3 3h18v18H3z" />
             <path d="M15 15h1a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1M9 15a2 2 0 0 0 2-2v-4" />
           </svg>
         );
       case 'springboot':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-plum-voltage transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-[#2e7d32] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" />
             <path d="M7.5 11.5L10 14L16.5 7.5" />
           </svg>
         );
       case 'mysql':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-plum-voltage transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-cornflower group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <ellipse cx="12" cy="5" rx="9" ry="3" />
             <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5M3 12c0 1.66 4 3 9 3s9-1.34 9-3" />
           </svg>
         );
       case 'react':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-lichen transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-signal-blue group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(30 12 12)" />
             <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(90 12 12)" />
             <ellipse cx="12" cy="12" rx="10" ry="4.5" transform="rotate(150 12 12)" />
@@ -101,37 +101,37 @@ export default function Skills() {
         );
       case 'tailwindcss':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-lichen transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-[#00acc1] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 16c-1.8 0-3-.6-3.6-1.8-.8-1.6-.2-3.6 1.8-4.2 1.8-.6 3.6.2 4.2 1.8.4.8.2 1.8-.4 2.4-.6.6-1.2.8-2 .8z" />
           </svg>
         );
       case 'html5':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-amber-spark transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-tangerine group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 2L2 5l1.5 14 8.5 3 8.5-3L22 5zM12 5v14" />
           </svg>
         );
       case 'figma':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-plum-voltage transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-amethyst group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M5 5.5A2.5 2.5 0 0 1 7.5 3h4v5h-4zM5 12.5A2.5 2.5 0 0 1 7.5 10h4v5h-4zM11.5 3h5a2.5 2.5 0 0 1 0 5h-5z" />
           </svg>
         );
       case 'github':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-bone transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-midnight-ink group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1" />
           </svg>
         );
       case 'aws':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-amber-spark transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-mustard group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M6 19c2-1 3-3 3-5v-4M4 14s4 4 8 4 8-4 8-4" />
           </svg>
         );
       case 'mongodb':
         return (
-          <svg className="w-5 h-5 text-ash group-hover:text-plum-voltage transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+          <svg className="w-5 h-5 text-[#43a047] group-hover:scale-110 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
             <path d="M12 2c0 0-5 7-5 13 0 3.5 2 6.5 5 8 3-1.5 5-4.5 5-8 0-6-5-13-5-13z" />
           </svg>
         );
@@ -141,7 +141,7 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" className="py-24 bg-void relative border-b border-bone/10">
+    <section id="skills" className="py-24 bg-transparent relative border-b border-stone/10">
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
@@ -149,23 +149,27 @@ export default function Skills() {
           {/* Left Column: Skills */}
           <div className="lg:col-span-6 space-y-10">
             <div>
-              <span className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase text-plum-voltage mb-3 block">ARMAMENT</span>
-              <h2 className="font-display-dala text-[32px] md:text-heading-custom text-bone leading-none">
-                TECHNICAL <span className="text-ash/60 font-[200]">STACK</span>
+              <span className="font-button-genie text-[11px] tracking-[0.05em] uppercase text-signal-blue bg-morning-tint px-3 py-1 rounded-full mb-3 block w-max">
+                ARMAMENT
+              </span>
+              <h2 className="font-display-genie text-[32px] md:text-[40px] text-midnight-ink leading-none">
+                Technical <span className="text-stone/60 font-light">Stack</span>
               </h2>
-              <div className="w-12 h-[1px] bg-bone/25 mt-6" />
+              <div className="w-12 h-[1px] bg-stone/20 mt-5" />
             </div>
 
             <div className="space-y-6">
               {skillCategories.map((cat, idx) => (
                 <div 
                   key={idx} 
-                  className="border border-bone/10 p-6 bg-transparent hover:border-bone/20 transition-colors duration-300" 
-                  style={{ borderRadius: '24px' }}
+                  className="bg-paper-white border border-stone p-6 transition-all duration-300 shadow-sm" 
+                  style={{ borderRadius: '32px' }}
                 >
-                  <div className="flex items-center space-x-3 mb-4 pb-3 border-b border-bone/5">
-                    {cat.icon}
-                    <h3 className="font-acronym text-[11px] font-semibold text-bone tracking-eyebrow-custom uppercase">
+                  <div className="flex items-center space-x-3 mb-4 pb-3 border-b border-stone/10">
+                    <div className="p-1.5 bg-cloud-veil rounded-lg">
+                      {cat.icon}
+                    </div>
+                    <h3 className="font-button-genie text-[12px] font-semibold text-midnight-ink tracking-wide uppercase">
                       {cat.title}
                     </h3>
                   </div>
@@ -174,13 +178,13 @@ export default function Skills() {
                     {cat.items.map((skill, sIdx) => (
                       <div 
                         key={sIdx}
-                        className="flex items-center space-x-3 p-3 border border-bone/5 hover:border-plum-voltage/20 transition-all duration-200 group interactive-item bg-transparent"
-                        style={{ borderRadius: '24px' }}
+                        className="flex items-center space-x-3 p-3 bg-pure-white border border-stone/10 hover:border-signal-blue/20 transition-all duration-200 group interactive-item"
+                        style={{ borderRadius: '16px' }}
                       >
-                        <div className="shrink-0">
+                        <div className="shrink-0 text-stone group-hover:text-midnight-ink">
                           {getTechSvg(skill.logo)}
                         </div>
-                        <span className="font-acronym text-[13px] text-smoke group-hover:text-bone transition-colors duration-200 font-semibold tracking-nav-custom">
+                        <span className="font-button-genie text-[13px] text-stone group-hover:text-midnight-ink transition-colors duration-200">
                           {skill.name}
                         </span>
                       </div>
@@ -194,34 +198,36 @@ export default function Skills() {
           {/* Right Column: Achievements */}
           <div className="lg:col-span-6 space-y-10">
             <div>
-              <span className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase text-lichen mb-3 block">DISTINCTIONS</span>
-              <h2 className="font-display-dala text-[32px] md:text-heading-custom text-bone leading-none">
-                NOTABLE <span className="text-ash/60 font-[200]">HONORS</span>
+              <span className="font-button-genie text-[11px] tracking-[0.05em] uppercase text-tangerine bg-sunset-gradient px-3 py-1 rounded-full mb-3 block w-max">
+                DISTINCTIONS
+              </span>
+              <h2 className="font-display-genie text-[32px] md:text-[40px] text-midnight-ink leading-none">
+                Notable <span className="text-stone/60 font-light">Honors</span>
               </h2>
-              <div className="w-12 h-[1px] bg-bone/25 mt-6" />
+              <div className="w-12 h-[1px] bg-stone/20 mt-5" />
             </div>
 
             <div className="grid grid-cols-1 gap-6">
               {achievements.map((item, idx) => (
                 <div
                   key={idx}
-                  className="border border-bone/10 hover:border-plum-voltage/30 p-6 flex items-start space-x-5 transition-all duration-300 relative group overflow-hidden bg-transparent interactive-item"
-                  style={{ borderRadius: '24px' }}
+                  className="bg-paper-white border border-stone hover:border-signal-blue/30 p-6 flex items-start space-x-5 transition-all duration-300 relative group overflow-hidden interactive-item shadow-sm"
+                  style={{ borderRadius: '32px' }}
                 >
-                  {/* Icon */}
-                  <div className="p-3 border border-bone/10 shrink-0 text-smoke group-hover:text-bone transition-colors" style={{ borderRadius: '24px' }}>
+                  {/* Icon Wrapper */}
+                  <div className="p-3 bg-cloud-veil border border-stone/10 shrink-0 text-stone group-hover:scale-105 transition-transform" style={{ borderRadius: '16px' }}>
                     {item.icon}
                   </div>
                   
                   {/* Text */}
                   <div>
-                    <span className="font-acronym text-[10px] text-plum-voltage font-semibold tracking-eyebrow-custom uppercase block mb-1">
+                    <span className="font-button-genie text-[10px] text-tangerine font-semibold tracking-wider uppercase block mb-1">
                       {item.subtitle}
                     </span>
-                    <h4 className="font-acronym text-body-custom font-semibold text-bone mb-1 group-hover:text-[#ffffff] transition-colors">
+                    <h4 className="font-display-genie text-[16px] font-semibold text-midnight-ink mb-1">
                       {item.title}
                     </h4>
-                    <p className="font-body-dala text-[13px] text-smoke leading-relaxed">
+                    <p className="font-body-genie text-[13px] text-stone leading-relaxed">
                       {item.desc}
                     </p>
                   </div>

@@ -33,7 +33,7 @@ export default function Projects() {
         'Component input validations and API integrity checks.'
       ],
       github: 'https://github.com/Fardeenkhan17/FitMe',
-      live: '#'
+      live: 'https://fit-me-1wqp.vercel.app/'
     },
     {
       title: 'PetHub — Veterinary & Clinical Dashboard',
@@ -58,8 +58,8 @@ export default function Projects() {
     const y = e.clientY - box.top - box.height / 2;
     
     // Max rotation is 5 degrees
-    const rotateX = -(y / (box.height / 2)) * 5;
-    const rotateY = (x / (box.width / 2)) * 5;
+    const rotateX = -(y / (box.height / 2)) * 4;
+    const rotateY = (x / (box.width / 2)) * 4;
     
     setTilt({ idx, x: rotateX, y: rotateY });
   };
@@ -68,31 +68,44 @@ export default function Projects() {
     setTilt({ idx: null, x: 0, y: 0 });
   };
 
+  const handleCardClick = (url) => {
+    if (url && url !== '#') {
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
-    <section id="projects" className="py-24 bg-void relative border-b border-bone/10">
+    <section id="projects" className="py-24 bg-transparent relative border-b border-stone/10">
       <div className="max-w-[1200px] mx-auto px-6 relative z-10">
         
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16 md:mb-24">
-          <span className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom uppercase text-plum-voltage mb-3">PORTFOLIO</span>
-          <h2 className="font-display-dala text-[32px] md:text-heading-lg-custom text-bone leading-none">
-            FEATURED <span className="text-ash/60 font-[200]">PROJECTS</span>
+          <span className="font-button-genie text-[11px] tracking-[0.05em] uppercase text-signal-blue bg-morning-tint px-3 py-1 rounded-full mb-3 block w-max">
+            PORTFOLIO
+          </span>
+          <h2 className="font-display-genie text-[32px] md:text-[48px] text-midnight-ink leading-none">
+            Featured <span className="text-stone/60 font-light">Projects</span>
           </h2>
-          <div className="w-12 h-[1px] bg-bone/25 mt-6" />
+          <div className="w-12 h-[1px] bg-stone/20 mt-5" />
         </div>
 
         {/* Side-by-Side 3D Tilt Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
           {projectsList.map((project, index) => {
             const isTilting = tilt.idx === index;
+            const hasLiveDemo = project.live !== '#';
             return (
               <div
                 key={index}
                 onMouseMove={(e) => handleMouseMove(e, index)}
                 onMouseLeave={handleMouseLeave}
-                className="bg-transparent border border-bone/10 hover:border-plum-voltage/30 p-6 flex flex-col justify-between transition-all duration-300 ease-out relative group overflow-hidden interactive-item"
+                onClick={() => handleCardClick(project.live)}
+                className={`bg-paper-white border border-stone p-6 flex flex-col justify-between transition-all duration-300 ease-out relative group overflow-hidden interactive-item shadow-sm ${
+                  hasLiveDemo ? 'cursor-pointer hover:border-signal-blue/40' : ''
+                }`}
                 style={{ 
-                  borderRadius: '24px',
+                  borderRadius: '32px',
+                  boxShadow: 'rgba(4, 69, 144, 0.08) 0px 14px 20px 4px',
                   transform: isTilting 
                     ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` 
                     : 'perspective(1000px) rotateX(0deg) rotateY(0deg)',
@@ -102,35 +115,45 @@ export default function Projects() {
               >
                 <div>
                   {/* Project banner image */}
-                  <div className="relative aspect-video overflow-hidden border border-bone/10 mb-6" style={{ transform: 'translateZ(10px)', borderRadius: '12px' }}>
+                  <div 
+                    className="relative aspect-video overflow-hidden border border-stone/10 mb-6" 
+                    style={{ transform: 'translateZ(10px)', borderRadius: '16px' }}
+                  >
                     <img 
                       src={project.image} 
                       alt={project.title}
-                      className="w-full h-full object-cover grayscale contrast-[1.05] group-hover:grayscale-0 group-hover:scale-103 transition-all duration-500 ease-out"
+                      className="w-full h-full object-cover grayscale contrast-[1.02] group-hover:grayscale-0 group-hover:scale-[1.02] transition-all duration-500 ease-out"
                     />
-                    <div className="absolute inset-0 bg-void/10 group-hover:bg-transparent transition-colors duration-300" />
+                    <div className="absolute inset-0 bg-midnight-ink/5 group-hover:bg-transparent transition-colors duration-300" />
+                    
+                    {hasLiveDemo && (
+                      <div className="absolute top-3 right-3 bg-pressed-charcoal/90 text-pure-white px-3 py-1 rounded-full font-button-genie text-[10px] tracking-wide shadow flex items-center space-x-1.5 opacity-80 group-hover:opacity-100 transition-opacity">
+                        <ExternalLink size={10} />
+                        <span>TOUCH TO PREVIEW</span>
+                      </div>
+                    )}
                   </div>
 
                   {/* Title */}
-                  <h3 className="font-acronym text-body-custom font-semibold text-bone mb-3 group-hover:text-plum-voltage transition-colors leading-tight" style={{ transform: 'translateZ(15px)' }}>
+                  <h3 className="font-display-genie text-[20px] font-semibold text-midnight-ink mb-3 group-hover:text-signal-blue transition-colors leading-tight" style={{ transform: 'translateZ(15px)' }}>
                     {project.title}
                   </h3>
 
                   {/* Description */}
-                  <p className="font-body-dala text-body-sm-custom text-smoke mb-6 leading-relaxed" style={{ transform: 'translateZ(5px)' }}>
+                  <p className="font-body-genie text-[14px] text-stone mb-6" style={{ transform: 'translateZ(5px)' }}>
                     {project.description}
                   </p>
 
                   {/* Features list */}
                   <div className="mb-6" style={{ transform: 'translateZ(10px)' }}>
-                    <h4 className="font-acronym text-[11px] font-semibold uppercase tracking-wider text-bone/90 mb-2.5 flex items-center space-x-1.5">
-                      <ShieldCheck size={12} className="text-plum-voltage" />
+                    <h4 className="font-button-genie text-[11px] uppercase tracking-wider text-midnight-ink mb-2.5 flex items-center space-x-1.5">
+                      <ShieldCheck size={13} className="text-signal-blue" />
                       <span>Contributions & Features</span>
                     </h4>
                     <ul className="space-y-1.5">
                       {project.features.map((feat, fIdx) => (
-                        <li key={fIdx} className="font-body-dala text-[12.5px] text-ash flex items-start">
-                          <span className="text-plum-voltage mr-2 select-none">•</span>
+                        <li key={fIdx} className="font-body-genie text-[13px] text-stone flex items-start">
+                          <span className="text-signal-blue mr-2 select-none">•</span>
                           <span>{feat}</span>
                         </li>
                       ))}
@@ -145,7 +168,7 @@ export default function Projects() {
                     {project.tech.map((tag) => (
                       <span 
                         key={tag}
-                        className="font-acronym text-[10.5px] bg-transparent text-smoke border border-bone/10 px-2.5 py-0.5"
+                        className="font-button-genie text-[10.5px] bg-cloud-veil text-stone border border-stone/10 px-2.5 py-0.5"
                         style={{ borderRadius: '24px' }}
                       >
                         {tag}
@@ -154,24 +177,26 @@ export default function Projects() {
                   </div>
 
                   {/* Links */}
-                  <div className="flex items-center space-x-6 pt-4 border-t border-bone/10">
+                  <div className="flex items-center space-x-6 pt-4 border-t border-stone/10">
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom text-smoke hover:text-bone transition-colors flex items-center space-x-1.5"
+                      onClick={(e) => e.stopPropagation()} // Stop bubbling since card is clickable
+                      className="font-button-genie text-[12px] tracking-wide text-stone hover:text-signal-blue transition-colors flex items-center space-x-1.5"
                     >
-                      <Github size={14} />
+                      <Github size={14} className="text-midnight-ink" />
                       <span>SOURCE CODE</span>
                     </a>
-                    {project.live !== '#' && (
+                    {hasLiveDemo && (
                       <a
                         href={project.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-acronym text-[12px] font-semibold tracking-eyebrow-custom text-smoke hover:text-bone transition-colors flex items-center space-x-1.5"
+                        onClick={(e) => e.stopPropagation()} // Stop bubbling
+                        className="font-button-genie text-[12px] tracking-wide text-stone hover:text-signal-blue transition-colors flex items-center space-x-1.5"
                       >
-                        <ExternalLink size={14} />
+                        <ExternalLink size={14} className="text-signal-blue" />
                         <span>LIVE DEMO</span>
                       </a>
                     )}
